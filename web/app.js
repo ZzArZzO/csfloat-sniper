@@ -50,10 +50,10 @@ function floatClass(f) {
 }
 
 function liquidityTag(vol) {
-  if (!vol || vol === 0) return '<span class="liq-tag liq-none">liq ?</span>';
-  if (vol >= 100) return `<span class="liq-tag liq-high" title="${vol} sales/30d">High</span>`;
-  if (vol >= 20)  return `<span class="liq-tag liq-medium" title="${vol} sales/30d">Med</span>`;
-  return `<span class="liq-tag liq-low" title="${vol} sales/30d">Low</span>`;
+  if (!vol || vol === 0) return '<span class="liq-tag liq-none" title="Volume unknown">LIQ?</span>';
+  if (vol >= 100) return `<span class="liq-tag liq-high"   title="${vol} sales/24h">HIGH</span>`;
+  if (vol >= 20)  return `<span class="liq-tag liq-medium" title="${vol} sales/24h">MED</span>`;
+  return             `<span class="liq-tag liq-low"    title="${vol} sales/24h">LOW</span>`;
 }
 
 // ── Card builder ──────────────────────────────────────────────────────────────
