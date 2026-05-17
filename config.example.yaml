@@ -1,0 +1,57 @@
+# Your main CSFloat account — used ONLY for buying, never for polling.
+main_api_key: "YOUR_MAIN_API_KEY"
+
+# Secondary account keys for polling (round-robin).
+# Each key has ~200 req/hour. With N keys at interval T:
+#   requests per key per hour = 3600 / (N × T) — must be ≤ 200
+poll_api_keys:
+  - "YOUR_POLL_KEY_1"
+  - "YOUR_POLL_KEY_2"
+
+poll_interval: 5s
+poll_jitter: 1s   # each tick is interval ± up to 1s (so 4s–6s)
+
+# Optional proxies — assigned to poll keys round-robin. Leave empty for direct.
+# Supports http://, https://, socks5://
+# proxies:
+#   - "http://user:pass@proxy1.example.com:8080"
+#   - "http://user:pass@proxy2.example.com:8080"
+
+server_port: 8080
+
+# cs2.sh API key for Buff163 + Youpin reference prices.
+# Sign up at cs2.sh — free 7-day developer key, no card required.
+# Leave empty to fall back to CSFloat's predicted_price.
+cs2cap_api_key: "YOUR_CS2SH_KEY"
+# How often to refresh the full price DB from cs2.sh (1 request per refresh).
+price_refresh_interval: 1h
+
+# Discord webhook URL for deal notifications. Leave empty to disable.
+# Create one: Server Settings → Integrations → Webhooks → New Webhook → Copy URL
+discord_webhook_url: ""
+
+# Global filters — applied before any snipe rule. 0 = disabled.
+filters:
+  min_price: 0          # ignore listings below this price ($)
+  max_price: 0          # ignore listings above this price ($)
+  min_saving: 0         # ignore deals saving less than this vs ref price ($)
+  min_volume: 0         # ignore items with fewer 24h Steam sales (requires volume cache warm-up)
+  min_sticker_value: 1.00  # ignore stickers with total value below this ($)
+  exclude_stattrak: false
+  exclude_souvenir: false
+
+price_snipe:
+  enabled: true
+  min_discount_pct: 15.0
+
+float_snipe:
+  enabled: false
+  rules:
+    - item: "AK-47 | Redline (Field-Tested)"
+      max_float: 0.15
+
+pattern_snipe:
+  enabled: false
+  rules:
+    - item: "AK-47 | Case Hardened (Field-Tested)"
+      seeds: [661, 321, 179]

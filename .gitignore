@@ -1,0 +1,4 @@
+config.yaml
+sniper.db
+sniper.db-wal
+sniper.db-shm
